@@ -21,8 +21,13 @@ export default class App extends Component {
     return (
       <main>
         <Nav />
-        <h1 className='name'>SHARON CLEERE</h1>
-        <h2 className='motto'>CREATIVE IMAGERY THROUGH WORDS AND PHOTOS</h2>
+        <div className='banner'>
+          <div className='name-cont'>
+            <h1 className='name'>SHARON</h1>
+            <h1 className='name'>CLEERE</h1>
+          </div>
+          <h2 className='motto'>CREATIVE IMAGERY THROUGH WORDS AND PHOTOS</h2>
+        </div>
         <Route exact path='/' component={Welcome}/>
         <Route exact path='/about' component={About}/>
         <Route exact path='/travel' component={Travel}/>
