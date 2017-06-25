@@ -5,16 +5,18 @@ import {
   Link
 } from 'react-router-dom'
 
+require('./Nav.css')
+
 export default class Nav extends Component {
   render() {
     return (
       <nav>
         <ul>
-          <li><Link to='/'>.WELCOME.</Link></li>
-          <li><Link to='/about'>.ABOUT.</Link></li>
-          <li><Link to='/travel'>.TRAVEL.</Link></li>
-          <li><Link to='/write'>.WRITE.</Link></li>
-          <li><Link to='/photo'>.PHOTOGRAPH.</Link></li>
+          <li><Link className='nav' to='/'>. &nbsp;&nbsp; WELCOME &nbsp;&nbsp; .</Link></li>
+          <li><Link className='nav' to='/about'>. &nbsp;&nbsp; ABOUT &nbsp;&nbsp; .</Link></li>
+          <li><Link className='nav' to='/travel'>. &nbsp;&nbsp; TRAVEL &nbsp;&nbsp; .</Link></li>
+          <li><Link className='nav' to='/write'>. &nbsp;&nbsp; WRITE &nbsp;&nbsp; .</Link></li>
+          <li><Link className='nav' to='/photo'>. &nbsp;&nbsp; PHOTOGRAPH &nbsp;&nbsp; .</Link></li>
         </ul>
       </nav>
     )
