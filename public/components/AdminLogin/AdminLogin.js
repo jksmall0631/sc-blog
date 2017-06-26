@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 
 export default class AdminLogin extends Component {
   constructor(){
@@ -11,20 +12,22 @@ export default class AdminLogin extends Component {
   }
 
   auth(){
-    const url = 'http://localhost:3000/auth'
+    const url = 'http://localhost:3000/api/v1/auth'
     fetch(url, {
-      method: POST,
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({username: this.state.username, password: this.state.password}),
-    }).then(data => data.json())
-      .then(data => {
-        if (data.message) {
-          alert(data.message)
-        } else {
-          this.setState({redirectToReferrer: true})
-        }
-      })
-      .catch(err => alert('Email and Password do not match'))
+      body: JSON.stringify({ username: this.state.username, password: this.state.password }),
+    })
+    .then(data => data.json())
+    .then(data => {
+      console.log(data)
+      if (data.message) {
+        alert(data.message)
+      } else {
+        this.setState({redirectToReferrer: true})
+      }
+    })
+    .catch(err => console.log(err))
   }
 
   render(){

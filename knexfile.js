@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/sc-blog',
+    connection: 'postgres://localhost/scblog',
     migrations: {
       directory: './db/migrations'
     },
@@ -16,7 +16,7 @@ module.exports = {
 
   staging: {
     client: 'pg',
-    connection: 'postgres://localhost/sc-blog-test',
+    connection: 'postgres://localhost/scblogTest',
     migrations: {
       directory: './db/migrations'
     },
