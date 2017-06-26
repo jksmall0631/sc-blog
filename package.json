@@ -13,6 +13,8 @@
   "dependencies": {
     "babel-preset-stage-2": "^6.24.1",
     "express": "^4.15.3",
+    "knex": "^0.13.0",
+    "pg": "^6.4.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1"
