@@ -6,7 +6,7 @@ export default class AdminLogin extends Component {
     this.state = {
       username: '',
       password: '',
-      redirectToReferrer: '',
+      redirectToReferrer: false,
     }
   }
 
@@ -21,7 +21,7 @@ export default class AdminLogin extends Component {
         if (data.message) {
           alert(data.message)
         } else {
-          browserHistory.push('/')
+          this.setState({redirectToReferrer: true})
         }
       })
       .catch(err => alert('Email and Password do not match'))
