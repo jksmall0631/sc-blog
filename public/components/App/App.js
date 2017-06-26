@@ -11,12 +11,28 @@ import About from '../About/About'
 import Travel from '../Travel/Travel'
 import Write from '../Write/Write'
 import Photo from '../Photo/Photo'
+import AdminLogin from '../AdminLogin/AdminLogin'
+import Protected from '../Protected/Protected'
 
 require('./Reset.css')
 require('./App.css')
 
 
 export default class App extends Component {
+  
+  const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    fakeAuth.isAuthenticated ? (
+      <Component {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
   render() {
     return (
       <main>
@@ -29,10 +45,12 @@ export default class App extends Component {
           <h2 className='motto'>CREATIVE IMAGERY THROUGH WORDS AND PHOTOS</h2>
         </div>
         <Route exact path='/' component={Welcome}/>
-        <Route exact path='/about' component={About}/>
-        <Route exact path='/travel' component={Travel}/>
-        <Route exact path='/write' component={Write}/>
-        <Route exact path='/photo' component={Photo}/>
+        <Route path='/about' component={About}/>
+        <Route path='/travel' component={Travel}/>
+        <Route path='/write' component={Write}/>
+        <Route path='/photo' component={Photo}/>
+        <Route exact path='/admin' component={AdminLogin}/>
+        <PrivateRoute path="/protected" component={Protected}/>
       </main>
     )
   }
