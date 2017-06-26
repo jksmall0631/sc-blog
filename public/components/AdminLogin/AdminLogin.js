@@ -28,8 +28,13 @@ export default class AdminLogin extends Component {
   }
 
   render(){
+    const {from} = this.props.location.state || '/';
+
     return(
       <div>
+        {this.state.redirectToReferrer && ( <Redirect to={from || '/protected'}/> )}
+        {from && ( <p>You must log in to view the page at {from.pathname}</p>)}
+
         <h4>Hey Sharon,</h4>
         <input type='text' placeholder='username' onChange={(e) => this.setState({ username: e.target.value })}></input>
         <input type='text' placeholder='password' onChange={(e) => this.setState({ password: e.target.value })}></input>

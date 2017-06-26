@@ -18,9 +18,7 @@ require('./Reset.css')
 require('./App.css')
 
 
-export default class App extends Component {
-  
-  const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     fakeAuth.isAuthenticated ? (
       <Component {...props}/>
@@ -32,6 +30,9 @@ export default class App extends Component {
     )
   )}/>
 )
+
+export default class App extends Component {
+
 
   render() {
     return (
