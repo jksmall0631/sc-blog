@@ -18,14 +18,12 @@ export default class AdminLogin extends Component {
   }
 
   redirect(){
-    console.log('bla')
     this.setState({ redirectToReferrer: true })
   }
 
   render(){
     const { from } = this.props.location.state || { from: { pathname: '/protected' } }
     const { redirectToReferrer } = this.state
-    console.log(redirectToReferrer)
 
     if(redirectToReferrer){
       return (
