@@ -14,27 +14,13 @@ import Write from '../Write/Write'
 import Photo from '../Photo/Photo'
 import AdminLogin from '../AdminLogin/AdminLogin'
 import Protected from '../Protected/Protected'
+import PrivateRoute from '../PrivateRoute/PrivateRoute'
 
 require('./Reset.css')
 require('./App.css')
 
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    isAuthenticated() ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
-
 export default class App extends Component {
-
-
   render() {
     return (
       <main>
