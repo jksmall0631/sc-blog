@@ -45,6 +45,18 @@ app.post('/api/v1/blog', (req, res) => {
   database('posts').insert(post)
   .returning('*')
   .then(data => res.send(data))
+  .catch(err => res.status(404).json(err))
+})
+
+app.get('/api/v1/blog', (req, res) => {
+  database('posts').select()
+  .then((posts) => {
+    console.log(posts)
+    response.status(200).json(posts)
+  })
+  .catch((error) => {
+    response.status(404).json(error)
+  })
 })
 
 app.listen(app.get('port'), () => {

@@ -15,7 +15,7 @@ export default class Protected extends Component {
     fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({this.state.title, this.state.date, this.state.content})
+      body: JSON.stringify({title: this.state.title, date: this.state.date, content: this.state.content})
     })
     .then(data => data.json())
     .then(data => console.log(data))
