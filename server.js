@@ -39,6 +39,14 @@ app.post('/api/v1/auth', (req, res) => {
   })
 })
 
+app.post('/api/v1/blog', (req, res) => {
+  const {title, date, content} = req.body
+  const post = {title, date, content}
+  database('posts').insert(post)
+  .returning('*')
+  .then(data => res.send(data))
+})
+
 app.listen(app.get('port'), () => {
   console.log(`Running on ${app.get('port')}`)
 })

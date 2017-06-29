@@ -6,7 +6,7 @@ export default class Protected extends Component {
     this.state = {
       title: '',
       date: '',
-      body: '',
+      content: '',
     }
   }
 
@@ -15,7 +15,7 @@ export default class Protected extends Component {
     fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({this.state.title, this.state.date, this.state.body})
+      body: JSON.stringify({this.state.title, this.state.date, this.state.content})
     })
     .then(data => data.json())
     .then(data => console.log(data))
@@ -27,7 +27,7 @@ export default class Protected extends Component {
         <h1>PROTECTEEEEEED!</h1>
         <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
         <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
-        <textarea placeholder='body' onChange={(e) => this.setState({body: e.target.value})}></textarea>
+        <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
         <button onClick={() => this.save()}>make that sheeeeiiiitttt!</button>
       </div>
     )
