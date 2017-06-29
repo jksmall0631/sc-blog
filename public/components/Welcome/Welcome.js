@@ -5,10 +5,12 @@ import {
   Link
 } from 'react-router-dom'
 
+import Banner from '../Banner/Banner'
+
 export default class Welcome extends Component {
   render(){
     return(
-      <h4>bla</h4>
+      <Banner />
     )
   }
 }
