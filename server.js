@@ -14,21 +14,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './public/index.html'));
-})
-
-function comparePass(userPassword, databasePassword) {
-  return bcrypt.compareSync(userPassword, databasePassword);
-}
-
 app.post('/api/v1/auth', (req, res) => {
   const {username, password} = req.body
-  // const salt = bcrypt.genSaltSync();
-  // const hash = bcrypt.hashSync(password, salt);
+
   database('user').where('username', username).select()
   .then(user => {
-    // if(!comparePass(hash, bcrypt.hashSync(user[0].password, salt))){
     if(password != user[0].password){
       res.status(404).json({ message: 'Incorrect password.' })
     }
@@ -37,6 +27,29 @@ app.post('/api/v1/auth', (req, res) => {
   .catch(err => {
     res.status(404).json({ message: 'Email Not Found.' })
   })
+})
+
+let s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'us-west-2'
+});
+let multer = require('multer')
+let multerS3 = require('multer-s3')
+let upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'adopt-fund',
+    region: 'us-west-2',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: (req, file, cb) => {
+      cb(null, Date.now().toString() + file.originalname)
+    }
+  })
+})
+
+app.post('/api/v1/photo', upload.single('file'), (req, res) => {
+  res.send(JSON.stringify({url: request.file.location}))
 })
 
 app.post('/api/v1/blog', (req, res) => {
@@ -50,13 +63,12 @@ app.post('/api/v1/blog', (req, res) => {
 
 app.get('/api/v1/blog', (req, res) => {
   database('posts').select()
-  .then((posts) => {
-    console.log(posts)
-    response.status(200).json(posts)
-  })
-  .catch((error) => {
-    response.status(404).json(error)
-  })
+  .then(posts => res.status(200).json(posts))
+  .catch(error => res.status(404).json(error))
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './public/index.html'));
 })
 
 app.listen(app.get('port'), () => {
