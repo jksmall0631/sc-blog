@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const path = require('path')
 const app = express()
@@ -9,10 +11,10 @@ const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 const aws = require('aws-sdk');
 
-app.use(function(request, response, next) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header('Access-Control-Allow-Methods', 'GET, POST, PATCH ,DELETE');
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH ,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
@@ -57,7 +59,7 @@ let upload = multer({
 })
 
 app.post('/api/v1/photo', upload.single('file'), (req, res) => {
-  res.send(JSON.stringify({url: request.file.location}))
+  res.send(JSON.stringify({url: req.file.location}))
 })
 
 app.post('/api/v1/blog', (req, res) => {
