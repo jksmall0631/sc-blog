@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class ImageUpload extends Component {
+export default class PhotoUpload extends Component {
   initUpload(e) {
     const files = document.getElementById('file-input').files
     const file = files[0]
@@ -14,7 +14,7 @@ export default class ImageUpload extends Component {
       body: form,
     })
     .then(data => data.json())
-    .then(data => this.props.saveImage(data.url))
+    .then(data => this.props.saveImag(data.url))
     .catch(err => console.log(err))
   }
 

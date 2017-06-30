@@ -32,9 +32,10 @@ export default class Travel extends Component {
 
   displayEntries(){
     let entries = this.state.entries.map(entry => {
+      console.log(entry)
       return (
         <div className='entry' key={entry.id}>
-          <img src={entry.image}></img>
+          <img src={entry.photo}></img>
           <h1>{entry.title}</h1>
           <p>{entry.date}</p>
           <p>{entry.content}</p>

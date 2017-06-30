@@ -63,8 +63,8 @@ app.post('/api/v1/photo', upload.single('file'), (req, res) => {
 })
 
 app.post('/api/v1/blog', (req, res) => {
-  const {title, date, content} = req.body
-  const post = {title, date, content}
+  const {photo, title, date, content} = req.body
+  const post = {photo, title, date, content}
   database('posts').insert(post)
   .returning('*')
   .then(data => res.send(data))

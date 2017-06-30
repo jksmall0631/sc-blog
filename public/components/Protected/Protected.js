@@ -1,16 +1,16 @@
 import React, {Component} from 'react'
-import ImageUpload from '../ImageUpload/ImageUpload'
+import PhotoUpload from '../PhotoUpload/PhotoUpload'
 
 export default class Protected extends Component {
   constructor(){
     super()
     this.state = {
-      image: '',
+      photo: '',
       title: '',
       date: '',
       content: '',
     }
-    this.saveImage = this.saveImage.bind(this)
+    this.savePhoto = this.savePhoto.bind(this)
   }
 
   save(){
@@ -18,21 +18,22 @@ export default class Protected extends Component {
     fetch(url, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({image: this.state.image, title: this.state.title, date: this.state.date, content: this.state.content})
+      body: JSON.stringify({photo: this.state.photo, title: this.state.title, date: this.state.date, content: this.state.content})
     })
     .then(data => data.json())
     .then(data => console.log(data))
   }
 
-  saveImage(image){
-    this.setState({image})
+  savePhoto(photo){
+    console.log(photo)
+    this.setState({photo: photo})
   }
 
   render(){
     return(
       <div>
         <h1>PROTECTEEEEEED!</h1>
-        <ImageUpload saveImage={this.saveImage}/>
+        <PhotoUpload savePhoto={this.savePhoto}/>
         <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
         <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
         <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
