@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ImageUpload from '../ImageUpload/ImageUpload'
 
 export default class Protected extends Component {
   constructor(){
@@ -25,6 +26,7 @@ export default class Protected extends Component {
     return(
       <div>
         <h1>PROTECTEEEEEED!</h1>
+        <ImageUpload />
         <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
         <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
         <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
