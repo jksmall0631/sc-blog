@@ -21,17 +21,78 @@ require('./App.css')
 
 
 export default class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      entries: [],
+    }
+  }
+
+  componentDidMount(){
+    this.blogEntries()
+  }
+
+  blogEntries(){
+    const url = 'http://localhost:3000/api/v1/blog'
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(data => data.json())
+    .then(data => {
+      console.log('data', data)
+      this.setState({entries: data})})
+    .catch(err => alert(err))
+  }
+
+  addEntry(photo, title, date, content){
+    const url = 'http://localhost:3000/api/v1/blog'
+    fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({photo, title, date, content})
+    })
+    .then(data => data.json())
+    .then(data => console.log(data))
+    .catch(err => alert(err))
+  }
+
+  removeEntry(id){
+    const url = 'http://localhost:3000/api/v1/delete'
+    fetch(url, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ id })
+    })
+    .then(data => data.json())
+    .then(data => {
+      let array = this.state.entries
+      for(let i = 0; i < array.length; i++){
+        if(array[i].id === id){
+          array.splice(i, 1)
+        }
+      }
+    })
+    .catch(err => alert(err))
+  }
+
   render() {
     return (
       <main>
         <Nav />
+        {console.log(this.state.entries)}
         <Route exact path='/' component={Welcome}/>
         <Route path='/about' component={About}/>
-        <Route path='/travel' component={Travel}/>
+        <Route path='/travel' render={() => (
+          <Travel entries={this.state.entries} removeEntry={this.removeEntry} component={Travel} />
+        )} />
         <Route path='/write' component={Write}/>
         <Route path='/photo' component={Photo}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <PrivateRoute path="/protected" component={Protected}/>
+        <PrivateRoute path="/protected" addEntry={this.addEntry} component={Protected}/>
       </main>
     )
   }
