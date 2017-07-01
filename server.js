@@ -71,6 +71,18 @@ app.post('/api/v1/blog', (req, res) => {
   .catch(err => res.status(404).json(err))
 })
 
+app.delete('/api/v1/delete', (req, res) => {
+  const { id } = req.body
+  database('posts').where( 'id', id ).select().del()
+  .then(count => {
+    if (count === 0) {
+      res.status(422).json({'Response 422': 'Unprocessable Entity'})
+    } else {
+      res.status(200).json({'Response 200': 'OK' })
+    }
+  })
+})
+
 app.get('/api/v1/blog', (req, res) => {
   database('posts').select()
   .then(posts => res.status(200).json(posts))
