@@ -2,12 +2,13 @@ import React, {Component} from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  withRouter
 } from 'react-router-dom'
 
 require('./Travel.css')
 
-export default class Travel extends Component {
+class Travel extends Component {
   constructor(){
     super()
     this.state = {
@@ -41,6 +42,7 @@ export default class Travel extends Component {
           <h1>{entry.title}</h1>
           <p>{entry.date}</p>
           <p>{entry.content}</p>
+          {this.props.location.pathname === '/protected' ? <button>remove</button> : ''}
         </div>
       )
     })
@@ -55,3 +57,5 @@ export default class Travel extends Component {
     )
   }
 }
+
+export default withRouter(Travel)

@@ -1,5 +1,11 @@
 import React, {Component} from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import PhotoUpload from '../PhotoUpload/PhotoUpload'
+import Travel from '../Travel/Travel'
 
 export default class Protected extends Component {
   constructor(){
@@ -32,6 +38,7 @@ export default class Protected extends Component {
   render(){
     return(
       <div>
+        <Travel />
         <h1>PROTECTEEEEEED!</h1>
         <PhotoUpload savePhoto={this.savePhoto}/>
         <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
