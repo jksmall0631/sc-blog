@@ -5,6 +5,8 @@ import {
   Link
 } from 'react-router-dom'
 
+require('./Travel.css')
+
 export default class Travel extends Component {
   constructor(){
     super()
@@ -35,7 +37,7 @@ export default class Travel extends Component {
       console.log(entry)
       return (
         <div className='entry' key={entry.id}>
-          <img src={entry.photo}></img>
+          <img className='entry-photo' src={entry.photo}></img>
           <h1>{entry.title}</h1>
           <p>{entry.date}</p>
           <p>{entry.content}</p>
