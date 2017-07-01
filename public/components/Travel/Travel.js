@@ -9,7 +9,6 @@ import {
 require('./Travel.css')
 
 class Travel extends Component {
-
   render(){
 
     let entries = this.props ? this.props.entries : []
@@ -26,6 +25,7 @@ class Travel extends Component {
     })
     return(
       <div>
+        {console.log(this.props)}
         {formatted}
       </div>
     )

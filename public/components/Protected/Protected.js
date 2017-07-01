@@ -20,7 +20,6 @@ export default class Protected extends Component {
   }
 
   savePhoto(photo){
-    console.log(photo)
     this.setState({photo: photo})
   }
 
@@ -34,7 +33,7 @@ export default class Protected extends Component {
         <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
         <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
         <button onClick={() => this.props.addEntry(photo, title, date, content)}>make that sheeeeiiiitttt!</button>
-        <Travel />
+        <Travel entries={this.props.entries}/>
       </div>
     )
   }

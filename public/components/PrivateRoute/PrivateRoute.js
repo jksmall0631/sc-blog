@@ -8,7 +8,7 @@ import Auth from '../Auth/Auth'
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     Auth.isAuth ? (
-      <Component {...props}/>
+      <Component {...props} entries={rest.entries}/>
     ) : (
       <Redirect to={{
         pathname: '/admin',

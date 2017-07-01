@@ -43,7 +43,6 @@ export default class App extends Component {
     })
     .then(data => data.json())
     .then(data => {
-      console.log('data', data)
       this.setState({entries: data})})
     .catch(err => alert(err))
   }
@@ -75,6 +74,7 @@ export default class App extends Component {
           array.splice(i, 1)
         }
       }
+      this.setState({entries: array})
     })
     .catch(err => alert(err))
   }
@@ -83,7 +83,6 @@ export default class App extends Component {
     return (
       <main>
         <Nav />
-        {console.log(this.state.entries)}
         <Route exact path='/' component={Welcome}/>
         <Route path='/about' component={About}/>
         <Route path='/travel' render={() => (
@@ -92,8 +91,11 @@ export default class App extends Component {
         <Route path='/write' component={Write}/>
         <Route path='/photo' component={Photo}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <PrivateRoute path="/protected" addEntry={this.addEntry} component={Protected}/>
+        <PrivateRoute path='/protected' entries={this.state.entries} component={Protected}/>
       </main>
     )
   }
 }
+
+
+// addEntry={this.addEntry} component={Protected} entries={this.state.entries}/>
