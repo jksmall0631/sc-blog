@@ -27,6 +27,7 @@ export default class App extends Component {
       entries: [],
     }
     this.addEntry = this.addEntry.bind(this)
+    this.removeEntry = this.removeEntry.bind(this)
   }
 
   componentDidMount(){
@@ -73,7 +74,7 @@ export default class App extends Component {
     })
     .then(data => data.json())
     .then(data => {
-      let array = this.state.entries
+      let array = this.state ? this.state.entries : []
       for(let i = 0; i < array.length; i++){
         if(array[i].id === id){
           array.splice(i, 1)
@@ -81,7 +82,7 @@ export default class App extends Component {
       }
       this.setState({entries: array})
     })
-    .catch(err => alert(err))
+    .catch(err => console.log(err))
   }
 
   render() {
@@ -91,12 +92,12 @@ export default class App extends Component {
         <Route exact path='/' component={Welcome}/>
         <Route path='/about' component={About}/>
         <Route path='/travel' render={() => (
-          <Travel entries={this.state.entries} removeEntry={this.removeEntry} component={Travel} />
+          <Travel entries={this.state.entries} component={Travel} />
         )} />
         <Route path='/write' component={Write}/>
         <Route path='/photo' component={Photo}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <PrivateRoute path='/protected' entries={this.state.entries} addEntry={this.addEntry} component={Protected}/>
+        <PrivateRoute path='/protected' entries={this.state.entries} addEntry={this.addEntry} removeEntry={this.removeEntry} component={Protected}/>
       </main>
     )
   }
