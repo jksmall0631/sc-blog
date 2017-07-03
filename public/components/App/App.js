@@ -26,6 +26,7 @@ export default class App extends Component {
     this.state = {
       entries: [],
     }
+    this.addEntry = this.addEntry.bind(this)
   }
 
   componentDidMount(){
@@ -55,7 +56,11 @@ export default class App extends Component {
       body: JSON.stringify({photo, title, date, content})
     })
     .then(data => data.json())
-    .then(data => console.log(data))
+    .then(data => {
+      let entries = this.state.entries
+      entries.push(data[0])
+      this.setState({entries})
+    })
     .catch(err => alert(err))
   }
 
@@ -91,7 +96,7 @@ export default class App extends Component {
         <Route path='/write' component={Write}/>
         <Route path='/photo' component={Photo}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <PrivateRoute path='/protected' entries={this.state.entries} component={Protected}/>
+        <PrivateRoute path='/protected' entries={this.state.entries} addEntry={this.addEntry} component={Protected}/>
       </main>
     )
   }
