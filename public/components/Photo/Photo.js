@@ -7,10 +7,19 @@ import {
 
 export default class Photo extends Component {
   render(){
+    let photos = this.props ? this.props.photos : []
+    let formatted = photos.map(photo => {
+      return (
+        <div className='photo-cont' key={photo.id}>
+          <img className='photo' src={photo.photo}></img>
+          {this.props.location.pathname === '/protected' ? <button onClick={() => {this.props.removePhoto(photo.id)}}>remove</button> : ''}
+        </div>
+      )
+    })
     return(
-      <h1>
-        {console.log(this.props.photos)}
-      </h1>
+      <div>
+        {formatted}
+      </div>
     )
   }
 }
