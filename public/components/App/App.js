@@ -25,9 +25,11 @@ export default class App extends Component {
     super()
     this.state = {
       entries: [],
+      photos: [],
     }
     this.addEntry = this.addEntry.bind(this)
     this.removeEntry = this.removeEntry.bind(this)
+    this.savePhoto = this.savePhoto.bind(this)
   }
 
   componentDidMount(){
@@ -85,6 +87,12 @@ export default class App extends Component {
     .catch(err => console.log(err))
   }
 
+  savePhoto(photo){
+    let photoArray = this.state.photos
+    photoArray.push(photo)
+    this.setState({photos: photoArray})
+  }
+
   render() {
     return (
       <main>
@@ -95,9 +103,15 @@ export default class App extends Component {
           <Travel entries={this.state.entries} component={Travel} />
         )} />
         <Route path='/write' component={Write}/>
-        <Route path='/photo' component={Photo}/>
+        <Route path='/photo' component={Photo} photos={this.state.photos}/>
         <Route exact path='/admin' component={AdminLogin}/>
-        <PrivateRoute path='/protected' entries={this.state.entries} addEntry={this.addEntry} removeEntry={this.removeEntry} component={Protected}/>
+        <PrivateRoute
+          path='/protected'
+          entries={this.state.entries}
+          addEntry={this.addEntry}
+          removeEntry={this.removeEntry}
+          savePhoto={this.savePhoto}
+          component={Protected}/>
       </main>
     )
   }

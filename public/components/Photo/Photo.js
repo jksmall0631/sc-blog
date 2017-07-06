@@ -8,7 +8,9 @@ import {
 export default class Photo extends Component {
   render(){
     return(
-      <h4>bla</h4>
+      <h1>
+        {console.log(this.props.photos)}
+      </h1>
     )
   }
 }

@@ -8,7 +8,12 @@ import Auth from '../Auth/Auth'
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     Auth.isAuth ? (
-      <Component {...props} entries={rest.entries} addEntry={rest.addEntry} removeEntry={rest.removeEntry}/>
+      <Component
+        {...props}
+        entries={rest.entries}
+        addEntry={rest.addEntry}
+        removeEntry={rest.removeEntry}
+        savePhoto={rest.savePhoto}/>
     ) : (
       <Redirect to={{
         pathname: '/admin',
