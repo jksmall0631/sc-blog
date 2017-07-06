@@ -89,6 +89,12 @@ app.get('/api/v1/blog', (req, res) => {
   .catch(error => res.status(404).json(error))
 })
 
+app.get('/api/v1/photos', (req, res) => {
+  database('photos').select()
+  .then(photos => res.status(200).json(photos))
+  .catch(error => res.status(404).json(error))
+})
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './public/index.html'));
 })
