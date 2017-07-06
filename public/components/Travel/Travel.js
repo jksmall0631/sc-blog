@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  withRouter
+  withRouter,
 } from 'react-router-dom'
 
 require('./Travel.css')

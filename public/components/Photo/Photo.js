@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  withRouter,
 } from 'react-router-dom'
 
-export default class Photo extends Component {
+class Photo extends Component {
   render(){
     let photos = this.props ? this.props.photos : []
     let formatted = photos.map(photo => {
@@ -23,3 +24,5 @@ export default class Photo extends Component {
     )
   }
 }
+
+export default withRouter(Photo)
