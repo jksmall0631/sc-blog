@@ -18,13 +18,6 @@ exports.up = function(knex, Promise) {
 
       table.timestamps();
     })
-
-    knex.schema.createTable('photos', function(table) {
-      table.increments('id').primary();
-      table.string('photo');
-
-      table.timestamps();
-    })
   ])
 };
 
@@ -32,6 +25,5 @@ exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('user'),
     knex.schema.dropTable('posts')
-    knex.schema.dropTable('photos')
   ]);
 };
