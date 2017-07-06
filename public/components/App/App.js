@@ -113,7 +113,7 @@ export default class App extends Component {
     .then(data => data.json())
     .then(data => {
       let photoArray = this.state.photos
-      photoArray.push(photo)
+      photoArray.push(data)
       this.setState({photos: photoArray})
     })
     .catch(err => alert(err))

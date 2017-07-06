@@ -73,7 +73,8 @@ app.post('/api/v1/blog', (req, res) => {
 
 app.post('/api/v1/photos', (req, res) => {
   const {photo} = req.body
-  database('photos').insert(photo)
+  const photoObj = {photo}
+  database('photos').insert(photoObj)
   .returning('*')
   .then(data => res.send(data))
   .catch(err => res.status(404).json(err))
