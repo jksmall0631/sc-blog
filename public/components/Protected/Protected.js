@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import PhotoUpload from '../PhotoUpload/PhotoUpload'
 import Travel from '../Travel/Travel'
+import Photo from '../Photo/Photo'
 
 export default class Protected extends Component {
   constructor(){
@@ -29,13 +30,14 @@ export default class Protected extends Component {
     return(
       <div>
         <h1>PROTECTEEEEEED!</h1>
-        <PhotoUpload savePhoto={this.savePhoto} id='file-input'/>
+        <PhotoUpload savePhoto={this.savePhoto} id='file-input' />
         <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
         <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
         <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
         <button onClick={() => this.props.addEntry(photo, title, date, content)}>make that sheeeeiiiitttt!</button>
-        <Travel entries={this.props.entries} removeEntry={this.props.removeEntry}/>
-        <PhotoUpload savePhoto={this.props.savePhoto} id='file-input2'/>
+        <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} />
+        <PhotoUpload savePhoto={this.props.savePhoto} id='file-input2' />
+        <Photo removePhoto={this.props.removePhoto} />
       </div>
     )
   }

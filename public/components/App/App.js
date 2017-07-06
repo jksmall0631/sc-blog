@@ -128,13 +128,13 @@ export default class App extends Component {
     })
     .then(data => data.json())
     .then(data => {
-      let array = this.state ? this.state.entries : []
+      let array = this.state ? this.state.photos : []
       for(let i = 0; i < array.length; i++){
         if(array[i].id === id){
           array.splice(i, 1)
         }
       }
-      this.setState({entries: array})
+      this.setState({photos: array})
     })
     .catch(err => console.log(err))
   }
