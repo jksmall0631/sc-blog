@@ -104,9 +104,19 @@ export default class App extends Component {
   }
 
   savePhoto(photo){
-    let photoArray = this.state.photos
-    photoArray.push(photo)
-    this.setState({photos: photoArray})
+    const url = 'http://localhost:3000/api/v1/photos'
+    fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({photo})
+    })
+    .then(data => data.json())
+    .then(data => {
+      let photoArray = this.state.photos
+      photoArray.push(photo)
+      this.setState({photos: photoArray})
+    })
+    .catch(err => alert(err))
   }
 
   render() {

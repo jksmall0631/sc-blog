@@ -71,6 +71,14 @@ app.post('/api/v1/blog', (req, res) => {
   .catch(err => res.status(404).json(err))
 })
 
+app.post('/api/v1/photos', (req, res) => {
+  const {photo} = req.body
+  database('photos').insert(photo)
+  .returning('*')
+  .then(data => res.send(data))
+  .catch(err => res.status(404).json(err))
+})
+
 app.delete('/api/v1/delete', (req, res) => {
   const { id } = req.body
   database('posts').where( 'id', id ).select().del()
