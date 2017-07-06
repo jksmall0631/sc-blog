@@ -34,6 +34,7 @@ export default class App extends Component {
 
   componentDidMount(){
     this.blogEntries()
+    this.photos()
   }
 
   blogEntries(){
@@ -87,6 +88,10 @@ export default class App extends Component {
     .catch(err => console.log(err))
   }
 
+  photos(){
+
+  }
+
   savePhoto(photo){
     let photoArray = this.state.photos
     photoArray.push(photo)
@@ -97,21 +102,23 @@ export default class App extends Component {
     return (
       <main>
         <Nav />
-        <Route exact path='/' component={Welcome}/>
-        <Route path='/about' component={About}/>
+        <Route exact path='/' component={Welcome} />
+        <Route path='/about' component={About} />
         <Route path='/travel' render={() => (
           <Travel entries={this.state.entries} component={Travel} />
         )} />
-        <Route path='/write' component={Write}/>
-        <Route path='/photo' component={Photo} photos={this.state.photos}/>
-        <Route exact path='/admin' component={AdminLogin}/>
+        <Route path='/write' component={Write} />
+        <Route path='/photo' render={() => (
+          <Photo photos={this.state.photos} component={Photo} />
+        )} />
+        <Route exact path='/admin' component={AdminLogin} />
         <PrivateRoute
           path='/protected'
           entries={this.state.entries}
           addEntry={this.addEntry}
           removeEntry={this.removeEntry}
           savePhoto={this.savePhoto}
-          component={Protected}/>
+          component={Protected} />
       </main>
     )
   }
