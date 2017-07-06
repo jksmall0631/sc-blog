@@ -69,7 +69,7 @@ export default class App extends Component {
   }
 
   removeEntry(id){
-    const url = 'http://localhost:3000/api/v1/delete'
+    const url = 'http://localhost:3000/api/v1/blog'
     fetch(url, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json'},
@@ -119,6 +119,26 @@ export default class App extends Component {
     .catch(err => alert(err))
   }
 
+  removePhoto(id){
+    const url = 'http://localhost:3000/api/v1/photos'
+    fetch(url, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ id })
+    })
+    .then(data => data.json())
+    .then(data => {
+      let array = this.state ? this.state.entries : []
+      for(let i = 0; i < array.length; i++){
+        if(array[i].id === id){
+          array.splice(i, 1)
+        }
+      }
+      this.setState({entries: array})
+    })
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <main>
@@ -139,6 +159,7 @@ export default class App extends Component {
           addEntry={this.addEntry}
           removeEntry={this.removeEntry}
           savePhoto={this.savePhoto}
+          removePhoto={this.removePhoto}
           component={Protected} />
       </main>
     )
