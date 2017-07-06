@@ -13,6 +13,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         entries={rest.entries}
         addEntry={rest.addEntry}
         removeEntry={rest.removeEntry}
+        photos={rest.photos}
         savePhoto={rest.savePhoto}
         removePhoto={rest.removePhoto}/>
     ) : (

@@ -30,6 +30,7 @@ export default class App extends Component {
     this.addEntry = this.addEntry.bind(this)
     this.removeEntry = this.removeEntry.bind(this)
     this.savePhoto = this.savePhoto.bind(this)
+    this.removePhoto = this.removePhoto.bind(this)
   }
 
   componentDidMount(){
@@ -113,7 +114,7 @@ export default class App extends Component {
     .then(data => data.json())
     .then(data => {
       let photoArray = this.state.photos
-      photoArray.push(data)
+      photoArray.push(data[0])
       this.setState({photos: photoArray})
     })
     .catch(err => alert(err))
@@ -158,6 +159,7 @@ export default class App extends Component {
           entries={this.state.entries}
           addEntry={this.addEntry}
           removeEntry={this.removeEntry}
+          photos={this.state.photos}
           savePhoto={this.savePhoto}
           removePhoto={this.removePhoto}
           component={Protected} />

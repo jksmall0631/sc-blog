@@ -30,6 +30,7 @@ export default class Protected extends Component {
     return(
       <div>
         <h1>PROTECTEEEEEED!</h1>
+        
         <PhotoUpload savePhoto={this.savePhoto} id='file-input' />
         <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
         <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
@@ -37,7 +38,7 @@ export default class Protected extends Component {
         <button onClick={() => this.props.addEntry(photo, title, date, content)}>make that sheeeeiiiitttt!</button>
         <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} />
         <PhotoUpload savePhoto={this.props.savePhoto} id='file-input2' />
-        <Photo removePhoto={this.props.removePhoto} />
+        <Photo photos={this.props.photos} removePhoto={this.props.removePhoto} />
       </div>
     )
   }
