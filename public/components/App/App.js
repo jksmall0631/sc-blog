@@ -89,7 +89,18 @@ export default class App extends Component {
   }
 
   photos(){
-
+    const url = 'http://localhost:3000/api/v1/photos'
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(data => data.json())
+    .then(data => {
+      this.setState({photos: data})})
+    .catch(err => alert(err))
   }
 
   savePhoto(photo){
