@@ -18,7 +18,7 @@ class Travel extends Component {
           <h1 className='entry-title'>{entry.title}</h1>
           <p className='entry-date'>{entry.date}</p>
           <p className='entry-content'>{entry.content}</p>
-          {this.props.location.pathname === '/protected' ? <button onClick={() => {this.props.removeEntry(entry.id)}}>remove</button> : ''}
+          {this.props.location.pathname === '/protected' ? <button className='entry-btn' onClick={() => {this.props.removeEntry(entry.id)}}>remove</button> : ''}
         </div>
       )
     })

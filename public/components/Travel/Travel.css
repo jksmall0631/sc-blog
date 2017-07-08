@@ -1,6 +1,6 @@
 .entry {
   max-width: 800px;
-  margin: auto;
+  margin: 50px auto 125px;
 }
 
 .entry-photo {
@@ -26,4 +26,8 @@
   font-weight: 300;
   margin-top: 20px;
   color: lightgrey;
+}
+
+.entry-btn {
+  float: right;
 }
