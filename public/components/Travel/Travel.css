@@ -17,6 +17,7 @@
 .entry-date {
   font-weight: 100;
   font-size: 15px;
+  text-indent: 5px;
   color: grey;
 }
 
