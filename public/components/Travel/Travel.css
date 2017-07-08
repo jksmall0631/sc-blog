@@ -6,3 +6,23 @@
 .entry-photo {
   max-width: 800px;
 }
+
+.entry-title {
+  font-weight: 300;
+  font-size: 38px;
+  color: lightgrey;
+  margin: 10px 0;
+}
+
+.entry-date {
+  font-weight: 100;
+  font-size: 15px;
+  color: grey;
+}
+
+.entry-content {
+  font-size: 18px;
+  font-weight: 300;
+  margin-top: 20px;
+  color: lightgrey;
+}

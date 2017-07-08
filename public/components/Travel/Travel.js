@@ -15,9 +15,9 @@ class Travel extends Component {
       return (
         <div className='entry' key={entry.id}>
           <img className='entry-photo' src={entry.photo}></img>
-          <h1>{entry.title}</h1>
-          <p>{entry.date}</p>
-          <p>{entry.content}</p>
+          <h1 className='entry-title'>{entry.title}</h1>
+          <p className='entry-date'>{entry.date}</p>
+          <p className='entry-content'>{entry.content}</p>
           {this.props.location.pathname === '/protected' ? <button onClick={() => {this.props.removeEntry(entry.id)}}>remove</button> : ''}
         </div>
       )
