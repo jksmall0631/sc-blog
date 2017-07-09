@@ -41,12 +41,15 @@ export default class Protected extends Component {
     return(
       <div>
         <div className='edit-blog'>
+          <p>Upload Photo:</p>
           <PhotoUpload savePhoto={this.savePhoto} id='file-input' />
+          <p>Title:</p>
           <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
+          <p>Date:</p>
           <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
+          <p>Content:</p>
           <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
           <button onClick={() => this.props.addEntry(photo, title, this.formatDate(), content)}>make that sheeeeiiiitttt!</button>
-          <button onClick={() => this.formatDate()}>bla</button>
         </div>
         <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} />
         <PhotoUpload savePhoto={this.props.savePhoto} id='file-input2' />

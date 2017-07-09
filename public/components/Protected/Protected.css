@@ -2,10 +2,10 @@
   max-width: 100%;
   margin: auto;
   text-align: center;
-  background-color: #F5F5F5;
+  background-color: #1A1A1A;
 }
 
-.edit-blog input, .edit-blog textarea, .edit-blog button {
+.edit-blog input, .edit-blog textarea, .edit-blog p {
   display: block;
   margin: 5px auto;
   width: 80%;
@@ -16,4 +16,19 @@
 
 .edit-blog textarea {
   height: 250px;
+}
+
+.edit-blog p {
+  text-align: left;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+.edit-blog button {
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: grey;
+  border: none;
 }
