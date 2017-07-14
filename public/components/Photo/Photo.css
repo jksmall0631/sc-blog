@@ -6,3 +6,7 @@
 .photo {
   max-width: 800px;
 }
+
+.photo-del {
+  float: right;
+}

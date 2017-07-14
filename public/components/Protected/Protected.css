@@ -6,18 +6,18 @@
 }
 
 .edit-photos {
-  padding: 50px;
+  padding: 25px 0 50px;
 }
 
-.h1 {
-  font-size: 50px;
+.edit-blog {
+  padding-top: 25px;
 }
 
 .h2 {
   font-size: 30px;
 }
 
-.edit-blog input, .edit-blog textarea, .edit-blog p, .edit-photos input {
+.edit-blog input, .edit-blog textarea, .edit-blog p, .edit-photos input, .edit-photos p {
   display: block;
   margin: 5px auto;
   width: 80%;

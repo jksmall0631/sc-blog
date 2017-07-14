@@ -39,10 +39,9 @@ export default class Protected extends Component {
   render(){
     const { photo, title, date, content } = this.state
     return(
-      <div classname='edit'>
+      <div className='edit'>
         <div className='edit-blog'>
-          <h1 className='h1'>Hey</h1>
-          <h2 className='h2'>Blog</h2>
+          <h2 className='h2'> Edit Blog</h2>
           <p>Upload Photo:</p>
           <PhotoUpload savePhoto={this.savePhoto} id='file-input' />
           <p>Title:</p>
@@ -55,7 +54,7 @@ export default class Protected extends Component {
         </div>
         <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} />
         <div className='edit-photos'>
-          <h2 className='h2'>Photos</h2>
+          <h2 className='h2'>Edit Photos</h2>
           <p>Upload Photo:</p>
           <PhotoUpload savePhoto={this.props.savePhoto} id='file-input2' />
         </div>
