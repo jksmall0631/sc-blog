@@ -47,7 +47,7 @@ export default class Protected extends Component {
           <p>Title:</p>
           <input placeholder='title' onChange={(e) => this.setState({title: e.target.value})}></input>
           <p>Date:</p>
-          <input type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
+          <input className='date' type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
           <p>Content:</p>
           <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
           <button onClick={() => this.props.addEntry(photo, title, this.formatDate(), content)}>make that sheeeeiiiitttt!</button>

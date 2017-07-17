@@ -50,3 +50,7 @@
   background-color: grey;
   border: none;
 }
+
+input[type=date] {
+    color: #999;
+}
