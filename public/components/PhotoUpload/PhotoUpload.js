@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
+import Loading from '../Loading/Loading'
 
 export default class PhotoUpload extends Component {
+  constructor(){
+    super()
+    this.state = {
+      loading: false
+    }
+  }
   initUpload(e) {
+    this.setState({ loading: true })
     const files = document.getElementById(this.props.id).files
     const file = files[0]
     let form = new FormData()
     form.append('file', file)
     if (file == null) {
-      console.log(file)
+      this.setState({ loading: false })
       return alert('No file  selected.')
     }
     fetch(`http://localhost:3000/api/v1/photo?file-name=${file.name}&file-type=${file.type}`, {
@@ -15,13 +23,19 @@ export default class PhotoUpload extends Component {
       body: form,
     })
     .then(data => data.json())
-    .then(data => this.props.savePhoto(data.url))
+    .then(data => {
+      this.setState({ loading: false })
+      this.props.savePhoto(data.url)
+    })
     .catch(err => console.log(err))
   }
 
   render() {
     return (
-        <input type='file' id={this.props.id} onChange={(e) => this.initUpload()} />
+      <div>
+        <input className='upload' type='file' id={this.props.id} onChange={(e) => this.initUpload()}></input>
+        {this.state.loading ? <Loading /> : ''}
+      </div>
     )
   }
 }
