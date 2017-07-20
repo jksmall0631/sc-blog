@@ -16,7 +16,7 @@ class Photo extends Component {
       return (
         <div className='photo-cont' key={photo.id}>
           <img className='photo' src={photo.photo}></img>
-          {this.props.location.pathname === '/protected' ? <button className='photo-del' onClick={() => {this.props.removePhoto(photo.id)}}>remove</button> : ''}
+          {this.props.location.pathname === '/protected/photo' ? <button className='photo-del' onClick={() => {this.props.removePhoto(photo.id)}}>remove</button> : ''}
         </div>
       )
     })

@@ -9,10 +9,33 @@ import {
 import PhotoUpload from '../PhotoUpload/PhotoUpload'
 import Travel from '../Travel/Travel'
 
-// require('./Travel.css')
-
 export default class TravelEdit extends Component {
+  constructor(){
+    super()
+    this.state = {
+      blogPhoto: '',
+      title: '',
+      date: '',
+      content: '',
+    }
+    this.savePhoto = this.savePhoto.bind(this)
+  }
+
+  savePhoto(photo){
+    this.setState({blogPhoto: photo})
+  }
+
+  formatDate(){
+    const string = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let dateArray = this.state.date.split('-')
+    const month = string[dateArray[1] - 1]
+    const day = dateArray[2]
+    const year = dateArray[0]
+    return month + ' ' + day + ', ' + year
+  }
+
   render(){
+    const { blogPhoto, title, date, content } = this.state
     return(
       <div>
         <div className='edit-blog'>
@@ -25,7 +48,7 @@ export default class TravelEdit extends Component {
           <input className='date' type='date' placeholder='date' onChange={(e) => this.setState({date: e.target.value})}></input>
           <p>Content:</p>
           <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
-          <button onClick={() => this.props.addEntry(photo, title, this.formatDate(), content)}>make that sheeeeiiiitttt!</button>
+          <button onClick={() => this.props.addEntry(blogPhoto, title, this.formatDate(), content)}>make that sheeeeiiiitttt!</button>
         </div>
         <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} />
       </div>

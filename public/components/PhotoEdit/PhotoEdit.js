@@ -9,10 +9,16 @@ import {
 import PhotoUpload from '../PhotoUpload/PhotoUpload'
 import Photo from '../Photo/Photo'
 
-// require('./Travel.css')
-
 export default class TravelEdit extends Component {
+  constructor(){
+    super()
+    this.state = {
+      photo: '',
+    }
+  }
+
   render(){
+    const { blogPhoto, title, date, content } = this.state
     return(
       <div>
         <div className='edit-photos'>
