@@ -5,9 +5,12 @@ export default class PhotoUpload extends Component {
   constructor(){
     super()
     this.state = {
-      loading: false
+      loading: false,
+      success: false,
     }
   }
+
+
   initUpload(e) {
     this.setState({ loading: true })
     const files = document.getElementById(this.props.id).files
@@ -24,16 +27,23 @@ export default class PhotoUpload extends Component {
     })
     .then(data => data.json())
     .then(data => {
-      this.setState({ loading: false })
+      this.setState({ loading: false, success: true })
       this.props.savePhoto(data.url)
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   render() {
     return (
       <div>
-        <input className='upload' type='file' id={this.props.id} onChange={(e) => this.initUpload()}></input>
+        <input
+          className='upload'
+          type='file' id={this.props.id}
+          style={(this.state.success) ? {color: 'lightgreen'} : {}}
+          onChange={(e) => this.initUpload()}>
+        </input>
         {this.state.loading ? <Loading /> : ''}
       </div>
     )
