@@ -5,8 +5,8 @@ import {
   Link
 } from 'react-router-dom'
 import PhotoUpload from '../PhotoUpload/PhotoUpload'
-import Travel from '../Travel/Travel'
-import Photo from '../Photo/Photo'
+import TravelEdit from '../TravelEdit/TravelEdit'
+import PhotoEdit from '../PhotoEdit/PhotoEdit'
 
 require('./Protected.css')
 
@@ -40,7 +40,7 @@ export default class Protected extends Component {
     const { photo, title, date, content } = this.state
     return(
       <div className='edit'>
-        <div className='edit-blog'>
+        {/* <div className='edit-blog'>
           <h2 className='h2'> Edit Blog</h2>
           <p>Upload Photo:</p>
           <PhotoUpload savePhoto={this.savePhoto} id='file-input' />
@@ -52,13 +52,30 @@ export default class Protected extends Component {
           <textarea placeholder='content' onChange={(e) => this.setState({content: e.target.value})}></textarea>
           <button onClick={() => this.props.addEntry(photo, title, this.formatDate(), content)}>make that sheeeeiiiitttt!</button>
         </div>
-        <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} />
-        <div className='edit-photos'>
+        <Travel entries={this.props.entries} removeEntry={this.props.removeEntry} /> */}
+        {/* <div className='edit-photos'>
           <h2 className='h2'>Edit Photos</h2>
           <p>Upload Photo:</p>
           <PhotoUpload savePhoto={this.props.savePhoto} id='file-input2' />
         </div>
-        <Photo photos={this.props.photos} removePhoto={this.props.removePhoto} />
+        <Photo photos={this.props.photos} removePhoto={this.props.removePhoto} /> */}
+
+        <Link to='/protected/travel'> Edit Travel Blog </Link>
+        <Link to='/protected/photo'> Edit Photos </Link>
+
+        <Route path='/protected/travel' render={() => (
+          <TravelEdit
+            entries={this.props.entries}
+            addEntry={this.props.addEntry}
+            removeEntry={this.props.removeEntry} />
+          )} />
+        <Route path='/protected/photo' render={() => (
+          <PhotoEdit
+            photos={this.props.photos}
+            savePhoto={this.props.savePhoto}
+            removePhoto={this.props.removePhoto} />
+          )} />
+
       </div>
     )
   }
