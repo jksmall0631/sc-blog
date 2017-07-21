@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom'
 import PhotoUpload from '../PhotoUpload/PhotoUpload'
 import TravelEdit from '../TravelEdit/TravelEdit'
@@ -15,9 +16,9 @@ export default class Protected extends Component {
   render(){
     return(
       <div className='edit'>
-
-        <Link to='/protected/travel'> Edit Travel Blog </Link>
-        <Link to='/protected/photo'> Edit Photos </Link>
+        <Redirect from='/protected' exact to='/protected/travel' />
+        <Link className='edit-travel-btn' to='/protected/travel'> Edit Travel Blog </Link>
+        <Link className='edit-photo-btn' to='/protected/photo'> Edit Photos </Link>
 
         <Route path='/protected/travel' render={() => (
           <TravelEdit
