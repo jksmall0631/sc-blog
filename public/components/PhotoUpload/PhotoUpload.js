@@ -41,7 +41,7 @@ export default class PhotoUpload extends Component {
         <input
           className='upload'
           type='file' id={this.props.id}
-          style={(this.state.success) ? {color: 'lightgreen'} : {}}
+          style={(this.state.success) ? {color: '#6D9EE1'} : {}}
           onChange={(e) => this.initUpload()}>
         </input>
         {this.state.loading ? <Loading /> : ''}
