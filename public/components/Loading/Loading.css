@@ -74,7 +74,6 @@
 .loader:after {
   position: relative;
   top: -66px;
-  right: -300px;
   border-radius: 50%;
   width: 1em;
   height: 1em;
