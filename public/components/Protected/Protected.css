@@ -51,6 +51,28 @@
   border: none;
 }
 
+.link-cont {
+  margin: 40px;
+  text-align: center;
+}
+
+.edit-travel-link, .edit-photo-link {
+  margin: 20px;
+  font-family: 'Lato', sans-serif;
+  color: lightgrey;
+  text-decoration: none;
+  font-weight: 100;
+  transition: all .5s ease-in;
+}
+
+.edit-travel-link:hover, .edit-photo-link:hover {
+  color: grey;
+}
+
+.active {
+  color: grey;
+}
+
 input[type=date] {
     color: #999;
 }

@@ -13,12 +13,20 @@ require('./Protected.css')
 
 export default class Protected extends Component {
 
+  toggle(e){
+    const elem = document.querySelectorAll('.edit-travel-link, .edit-photo-link')
+    elem.forEach(elem => elem.classList.remove('active'))
+    e.target.classList.add('active')
+  }
+
   render(){
     return(
       <div className='edit'>
         <Redirect from='/protected' exact to='/protected/travel' />
-        <Link className='edit-travel-btn' to='/protected/travel'> Edit Travel Blog </Link>
-        <Link className='edit-photo-btn' to='/protected/photo'> Edit Photos </Link>
+        <div className='link-cont'>
+          <Link onClick={(e) => this.toggle(e)} className='edit-travel-link active' to='/protected/travel'> Edit Blog </Link>
+          <Link onClick={(e) => this.toggle(e)} className='edit-photo-link' to='/protected/photo'> Edit Photos </Link>
+        </div>
 
         <Route path='/protected/travel' render={() => (
           <TravelEdit
