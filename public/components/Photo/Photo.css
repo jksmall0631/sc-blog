@@ -10,3 +10,23 @@
 .photo-del {
   float: right;
 }
+
+@media (max-width: 800px) {
+  .photo-cont {
+    margin: 50px auto;
+  }
+
+  .photo, .photo-cont {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .photo-cont {
+    margin: 50px auto;
+  }
+
+  .photo, .photo-cont {
+    max-width: 100%
+  }
+}
