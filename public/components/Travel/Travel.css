@@ -31,3 +31,19 @@
 .entry-btn {
   float: right;
 }
+
+@media (max-width: 800px) {
+  .entry, .entry-photo {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .entry {
+    margin: 50px auto 75px;
+  }
+
+  .entry, .entry-photo {
+    max-width: 100%
+  }
+}
