@@ -14,6 +14,7 @@
   font-weight: 100;
   font-size: 180px;
   letter-spacing: 20px;
+  margin-right: -20px;
 }
 
 .motto {
@@ -22,4 +23,16 @@
   font-size: 23px;
   letter-spacing: 5px;
   word-spacing: 10px;
+}
+
+@media (max-width: 950px) {
+  .name {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 580px) {
+  .name {
+    font-size: 45px;
+  }
 }
