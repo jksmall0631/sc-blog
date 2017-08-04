@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 
-require('./Banner.css')
+require("./Banner.css");
 
 const Banner = () => {
-  return(
-    <div className='banner'>
-      <div className='name-cont'>
-        <h1 className='name'>SHARON</h1>
-        <h1 className='name'>CLEERE</h1>
+  return (
+    <div className="banner">
+      <div className="name-cont">
+        <h1 className="name">SHARON</h1>
+        <h1 className="name">CLEERE</h1>
       </div>
-      <h2 className='motto'>CREATIVE IMAGERY THROUGH WORDS AND PHOTOS</h2>
+      <h2 className="motto">CREATIVE IMAGERY THROUGH WORDS AND PHOTOS</h2>
     </div>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;
