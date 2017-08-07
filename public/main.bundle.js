@@ -27266,7 +27266,7 @@
 	  authenticate: function authenticate(username, password, callback) {
 	    var _this = this;
 
-	    var url = "http://localhost:3000/api/v1/auth";
+	    var url = "https://secleere.herokuapp.com/api/v1/auth";
 	    fetch(url, {
 	      method: "POST",
 	      headers: { "Content-Type": "application/json" },
@@ -27516,7 +27516,7 @@
 	        this.setState({ loading: false });
 	        return alert("No file  selected.");
 	      }
-	      fetch("http://localhost:3000/api/v1/photo?file-name=" + file.name + "&file-type=" + file.type, {
+	      fetch("https://secleere.herokuapp.com/api/v1/photo?file-name=" + file.name + "&file-type=" + file.type, {
 	        method: "POST",
 	        body: form
 	      }).then(function (data) {
