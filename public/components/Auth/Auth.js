@@ -17,7 +17,7 @@ const Auth = {
           callback();
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 };
 

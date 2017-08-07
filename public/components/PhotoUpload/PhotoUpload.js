@@ -33,7 +33,7 @@ export default class PhotoUpload extends Component {
         this.props.savePhoto(data.url);
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   }
 

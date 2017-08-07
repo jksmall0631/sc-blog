@@ -38,7 +38,7 @@ export default class App extends Component {
   }
 
   blogEntries() {
-    const url = "http://localhost:3000/api/v1/blog";
+    const url = "https://secleere.herokuapp.com/api/v1/blog";
     fetch(url, {
       method: "GET",
       headers: {
@@ -54,7 +54,7 @@ export default class App extends Component {
   }
 
   addEntry(photo, title, date, content) {
-    const url = "http://localhost:3000/api/v1/blog";
+    const url = "https://secleere.herokuapp.com/api/v1/blog";
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,7 +70,7 @@ export default class App extends Component {
   }
 
   removeEntry(id) {
-    const url = "http://localhost:3000/api/v1/blog";
+    const url = "https://secleere.herokuapp.com/api/v1/blog";
     fetch(url, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -86,11 +86,11 @@ export default class App extends Component {
         }
         this.setState({ entries: array });
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 
   photos() {
-    const url = "http://localhost:3000/api/v1/photos";
+    const url = "https://secleere.herokuapp.com/api/v1/photos";
     fetch(url, {
       method: "GET",
       headers: {
@@ -106,7 +106,7 @@ export default class App extends Component {
   }
 
   savePhoto(photo) {
-    const url = "http://localhost:3000/api/v1/photos";
+    const url = "https://secleere.herokuapp.com/api/v1/photos";
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -122,7 +122,7 @@ export default class App extends Component {
   }
 
   removePhoto(id) {
-    const url = "http://localhost:3000/api/v1/photos";
+    const url = "https://secleere.herokuapp.com/api/v1/photos";
     fetch(url, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ export default class App extends Component {
         }
         this.setState({ photos: array });
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 
   render() {
@@ -172,5 +172,3 @@ export default class App extends Component {
     );
   }
 }
-
-// addEntry={this.addEntry} component={Protected} entries={this.state.entries}/>
