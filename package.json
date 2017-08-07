@@ -10,6 +10,9 @@
   },
   "author": "Joshua Small <jksmall0631@gmail.com>",
   "license": "ISC",
+  "engines": {
+    "node": "6.7.0"
+  },
   "dependencies": {
     "aws-sdk": "^2.79.0",
     "babel-preset-stage-2": "^6.24.1",
