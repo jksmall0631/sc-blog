@@ -25790,7 +25790,7 @@
 	    value: function blogEntries() {
 	      var _this2 = this;
 
-	      var url = "http://localhost:3000/api/v1/blog";
+	      var url = "https://secleere.herokuapp.com/api/v1/blog";
 	      fetch(url, {
 	        method: "GET",
 	        headers: {
@@ -25810,7 +25810,7 @@
 	    value: function addEntry(photo, title, date, content) {
 	      var _this3 = this;
 
-	      var url = "http://localhost:3000/api/v1/blog";
+	      var url = "https://secleere.herokuapp.com/api/v1/blog";
 	      fetch(url, {
 	        method: "POST",
 	        headers: { "Content-Type": "application/json" },
@@ -25830,7 +25830,7 @@
 	    value: function removeEntry(id) {
 	      var _this4 = this;
 
-	      var url = "http://localhost:3000/api/v1/blog";
+	      var url = "https://secleere.herokuapp.com/api/v1/blog";
 	      fetch(url, {
 	        method: "DELETE",
 	        headers: { "Content-Type": "application/json" },
@@ -25846,7 +25846,7 @@
 	        }
 	        _this4.setState({ entries: array });
 	      }).catch(function (err) {
-	        return console.log(err);
+	        return alert(err);
 	      });
 	    }
 	  }, {
@@ -25854,7 +25854,7 @@
 	    value: function photos() {
 	      var _this5 = this;
 
-	      var url = "http://localhost:3000/api/v1/photos";
+	      var url = "https://secleere.herokuapp.com/api/v1/photos";
 	      fetch(url, {
 	        method: "GET",
 	        headers: {
@@ -25874,7 +25874,7 @@
 	    value: function savePhoto(photo) {
 	      var _this6 = this;
 
-	      var url = "http://localhost:3000/api/v1/photos";
+	      var url = "https://secleere.herokuapp.com/api/v1/photos";
 	      fetch(url, {
 	        method: "POST",
 	        headers: { "Content-Type": "application/json" },
@@ -25894,7 +25894,7 @@
 	    value: function removePhoto(id) {
 	      var _this7 = this;
 
-	      var url = "http://localhost:3000/api/v1/photos";
+	      var url = "https://secleere.herokuapp.com/api/v1/photos";
 	      fetch(url, {
 	        method: "DELETE",
 	        headers: { "Content-Type": "application/json" },
@@ -25910,7 +25910,7 @@
 	        }
 	        _this7.setState({ photos: array });
 	      }).catch(function (err) {
-	        return console.log(err);
+	        return alert(err);
 	      });
 	    }
 	  }, {
@@ -25954,9 +25954,6 @@
 
 	  return App;
 	}(_react.Component);
-
-	// addEntry={this.addEntry} component={Protected} entries={this.state.entries}/>
-
 
 	exports.default = App;
 
@@ -27284,7 +27281,7 @@
 	        callback();
 	      }
 	    }).catch(function (err) {
-	      return console.log(err);
+	      return alert(err);
 	    });
 	  }
 	};
@@ -27528,7 +27525,7 @@
 	        _this2.setState({ loading: false, success: true });
 	        _this2.props.savePhoto(data.url);
 	      }).catch(function (err) {
-	        console.log(err);
+	        alert(err);
 	      });
 	    }
 	  }, {
