@@ -2,7 +2,7 @@ const Auth = {
   isAuth: false,
 
   authenticate(username, password, callback) {
-    const url = "http://localhost:3000/api/v1/auth";
+    const url = "https://secleere.herokuapp.com/api/v1/auth";
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

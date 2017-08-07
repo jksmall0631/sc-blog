@@ -21,7 +21,7 @@ export default class PhotoUpload extends Component {
       return alert("No file  selected.");
     }
     fetch(
-      `http://localhost:3000/api/v1/photo?file-name=${file.name}&file-type=${file.type}`,
+      `https://secleere.herokuapp.com/api/v1/photo?file-name=${file.name}&file-type=${file.type}`,
       {
         method: "POST",
         body: form
