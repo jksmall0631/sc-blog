@@ -12,8 +12,8 @@
 .name {
   color: lightgrey;
   font-weight: 100;
-  font-size: 180px;
-  letter-spacing: 20px;
+  font-size: 120px;
+  letter-spacing: 15px;
   margin-right: -20px;
 }
 
@@ -31,7 +31,16 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 880px) {
+  .name {
+    font-size: 75px;
+  }
+  .motto {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 650px) {
   .name {
     font-size: 45px;
   }
