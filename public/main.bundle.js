@@ -26780,7 +26780,7 @@
 
 
 	// module
-	exports.push([module.id, ".banner {\n  width: 90%;\n  height: 500px;\n  text-align: center;\n  margin: auto;\n}\n\n.name-cont {\n  margin: 100px 0 50px 0;\n}\n\n.name {\n  color: lightgrey;\n  font-weight: 100;\n  font-size: 120px;\n  letter-spacing: 15px;\n  margin-right: -20px;\n}\n\n.motto {\n  color: #DEBA80;\n  font-weight: 100;\n  font-size: 23px;\n  letter-spacing: 5px;\n  word-spacing: 10px;\n}\n\n@media (max-width: 950px) {\n  .name {\n    font-size: 100px;\n  }\n}\n\n@media (max-width: 880px) {\n  .name {\n    font-size: 75px;\n  }\n  .motto {\n    font-size: 18px;\n  }\n}\n\n@media (max-width: 650px) {\n  .name {\n    font-size: 45px;\n  }\n  .motto {\n    font-size: 18px;\n  }\n}\n", ""]);
+	exports.push([module.id, ".banner {\n  width: 90%;\n  height: 500px;\n  text-align: center;\n  margin: auto;\n}\n\n.name-cont {\n  margin: 100px 0 50px 0;\n}\n\n.name {\n  color: lightgrey;\n  font-weight: 100;\n  font-size: 120px;\n  letter-spacing: 15px;\n  margin-right: -20px;\n}\n\n.motto {\n  color: #DEBA80;\n  font-weight: 100;\n  font-size: 24px;\n  letter-spacing: 5px;\n  word-spacing: 10px;\n}\n\n@media (max-width: 950px) {\n  .name {\n    font-size: 100px;\n  }\n}\n\n@media (max-width: 880px) {\n  .name {\n    font-size: 75px;\n  }\n  .motto {\n    font-size: 18px;\n  }\n}\n\n@media (max-width: 650px) {\n  .name {\n    font-size: 45px;\n  }\n  .motto {\n    font-size: 18px;\n  }\n}\n\n@media (max-width: 450px) {\n  .name-cont {\n    margin: 100px 0 30px 0;\n  }\n  .name {\n    font-size: 26px;\n  }\n  .motto {\n    font-size: 14px;\n  }\n}\n", ""]);
 
 	// exports
 
