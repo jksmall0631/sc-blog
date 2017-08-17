@@ -12,9 +12,17 @@ class Travel extends Component {
   render() {
     let entries = this.props ? this.props.entries : [];
     let formatted = entries.map(entry => {
+
+      let formattedContent = entry.content.substr(0, 400);
+      formattedContent = entry.content.substr(
+        0,
+        Math.min(formattedContent.length, formattedContent.lastIndexOf(" "))
+      ) + "...";
+
       return (
         <div className="entry" key={entry.id}>
           <img className="entry-photo" src={entry.photo} />
+          <div id="pdfRenderer" />
           <h1 className="entry-title">
             {entry.title}
           </h1>
@@ -22,8 +30,10 @@ class Travel extends Component {
             {entry.date}
           </p>
           <pre className="entry-content">
-            {entry.content}
+            {formattedContent}
           </pre>
+          <br />
+          <a>read more ></a>
           {this.props.location.pathname === "/protected/travel"
             ? <button
                 className="entry-btn"
@@ -37,6 +47,7 @@ class Travel extends Component {
         </div>
       );
     });
+
     return (
       <div>
         {formatted}

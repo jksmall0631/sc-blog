@@ -26881,10 +26881,15 @@
 
 	      var entries = this.props ? this.props.entries : [];
 	      var formatted = entries.map(function (entry) {
+
+	        var formattedContent = entry.content.substr(0, 400);
+	        formattedContent = entry.content.substr(0, Math.min(formattedContent.length, formattedContent.lastIndexOf(" "))) + "...";
+
 	        return _react2.default.createElement(
 	          "div",
 	          { className: "entry", key: entry.id },
 	          _react2.default.createElement("img", { className: "entry-photo", src: entry.photo }),
+	          _react2.default.createElement("div", { id: "pdfRenderer" }),
 	          _react2.default.createElement(
 	            "h1",
 	            { className: "entry-title" },
@@ -26898,7 +26903,13 @@
 	          _react2.default.createElement(
 	            "pre",
 	            { className: "entry-content" },
-	            entry.content
+	            formattedContent
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "a",
+	            null,
+	            "read more >"
 	          ),
 	          _this2.props.location.pathname === "/protected/travel" ? _react2.default.createElement(
 	            "button",
@@ -26912,6 +26923,7 @@
 	          ) : ""
 	        );
 	      });
+
 	      return _react2.default.createElement(
 	        "div",
 	        null,
