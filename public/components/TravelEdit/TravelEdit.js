@@ -26,25 +26,28 @@ export default class TravelEdit extends Component {
   }
 
   formatDate() {
-    const string = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    let dateArray = this.state.date.split("-");
-    const month = string[dateArray[1] - 1];
-    const day = dateArray[2];
-    const year = dateArray[0];
-    return month + " " + day + ", " + year;
+    if (this.state.date) {
+      const string = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+      let dateArray = this.state.date.split("-");
+      const month = string[dateArray[1] - 1];
+      const day = dateArray[2];
+      const year = dateArray[0];
+      return month + " " + day + ", " + year;
+    }
+    return "";
   }
 
   render() {
@@ -69,6 +72,7 @@ export default class TravelEdit extends Component {
           />
           <p>Content:</p>
           <textarea
+            className="content"
             placeholder="content"
             onChange={e => this.setState({ content: e.target.value })}
           />
@@ -76,7 +80,7 @@ export default class TravelEdit extends Component {
             onClick={() =>
               this.props.addEntry(blogPhoto, title, this.formatDate(), content)}
           >
-            make that sheeeeiiiitttt!
+            create
           </button>
         </div>
         <Travel

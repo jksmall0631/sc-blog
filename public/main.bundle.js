@@ -25810,6 +25810,7 @@
 	    value: function addEntry(photo, title, date, content) {
 	      var _this3 = this;
 
+	      console.log(content);
 	      var url = "https://secleere.herokuapp.com/api/v1/blog";
 	      fetch(url, {
 	        method: "POST",
@@ -26880,6 +26881,7 @@
 
 	      var entries = this.props ? this.props.entries : [];
 	      var formatted = entries.map(function (entry) {
+	        console.log(entry.content);
 	        return _react2.default.createElement(
 	          "div",
 	          { className: "entry", key: entry.id },
@@ -26895,7 +26897,7 @@
 	            entry.date
 	          ),
 	          _react2.default.createElement(
-	            "p",
+	            "pre",
 	            { className: "entry-content" },
 	            entry.content
 	          ),
@@ -26964,7 +26966,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry {\n  max-width: 800px;\n  margin: 50px auto 125px;\n}\n\n.entry-photo {\n  max-width: 800px;\n}\n\n.entry-title {\n  font-weight: 300;\n  font-size: 38px;\n  color: lightgrey;\n  margin: 10px 0;\n}\n\n.entry-date {\n  font-weight: 100;\n  font-size: 15px;\n  text-indent: 5px;\n  color: grey;\n}\n\n.entry-content {\n  font-size: 18px;\n  font-weight: 300;\n  margin-top: 20px;\n  color: lightgrey;\n}\n\n.entry-btn {\n  float: right;\n}\n\n@media (max-width: 800px) {\n  .entry, .entry-photo {\n    max-width: 500px;\n  }\n}\n\n@media (max-width: 500px) {\n  .entry {\n    margin: 50px auto 75px;\n  }\n\n  .entry, .entry-photo {\n    max-width: 100%\n  }\n}\n", ""]);
+	exports.push([module.id, ".entry {\n  max-width: 800px;\n  margin: 50px auto 125px;\n}\n\n.entry-photo {\n  max-width: 800px;\n}\n\n.entry-title {\n  font-weight: 300;\n  font-size: 38px;\n  color: lightgrey;\n  margin: 10px 0;\n}\n\n.entry-date {\n  font-weight: 100;\n  font-size: 15px;\n  text-indent: 5px;\n  color: grey;\n}\n\n.entry-content {\n  line-height: 30px;\n  font-size: 18px;\n  font-weight: 300;\n  margin-top: 20px;\n  color: lightgrey;\n}\n\npre {\n    white-space: pre-wrap;\n    white-space: -moz-pre-wrap;\n    white-space: -pre-wrap;\n    white-space: -o-pre-wrap;\n    word-wrap: break-word;\n}\n\n.entry-btn {\n  float: right;\n}\n\n@media (max-width: 800px) {\n  .entry, .entry-photo {\n    max-width: 500px;\n  }\n}\n\n@media (max-width: 500px) {\n  .entry {\n    margin: 50px auto 75px;\n  }\n\n  .entry, .entry-photo {\n    max-width: 100%\n  }\n}\n", ""]);
 
 	// exports
 
@@ -27688,12 +27690,15 @@
 	  }, {
 	    key: "formatDate",
 	    value: function formatDate() {
-	      var string = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	      var dateArray = this.state.date.split("-");
-	      var month = string[dateArray[1] - 1];
-	      var day = dateArray[2];
-	      var year = dateArray[0];
-	      return month + " " + day + ", " + year;
+	      if (this.state.date) {
+	        var string = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	        var dateArray = this.state.date.split("-");
+	        var month = string[dateArray[1] - 1];
+	        var day = dateArray[2];
+	        var year = dateArray[0];
+	        return month + " " + day + ", " + year;
+	      }
+	      return "";
 	    }
 	  }, {
 	    key: "render",
@@ -27753,6 +27758,7 @@
 	            "Content:"
 	          ),
 	          _react2.default.createElement("textarea", {
+	            className: "content",
 	            placeholder: "content",
 	            onChange: function onChange(e) {
 	              return _this2.setState({ content: e.target.value });
@@ -27765,7 +27771,7 @@
 	                return _this2.props.addEntry(blogPhoto, title, _this2.formatDate(), content);
 	              }
 	            },
-	            "make that sheeeeiiiitttt!"
+	            "create"
 	          )
 	        ),
 	        _react2.default.createElement(_Travel2.default, {

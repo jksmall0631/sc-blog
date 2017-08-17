@@ -22,10 +22,19 @@
 }
 
 .entry-content {
+  line-height: 30px;
   font-size: 18px;
   font-weight: 300;
   margin-top: 20px;
   color: lightgrey;
+}
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
 
 .entry-btn {

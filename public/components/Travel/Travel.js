@@ -21,9 +21,9 @@ class Travel extends Component {
           <p className="entry-date">
             {entry.date}
           </p>
-          <p className="entry-content">
+          <pre className="entry-content">
             {entry.content}
-          </p>
+          </pre>
           {this.props.location.pathname === "/protected/travel"
             ? <button
                 className="entry-btn"
