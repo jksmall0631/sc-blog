@@ -15,6 +15,7 @@ import Photo from "../Photo/Photo";
 import AdminLogin from "../AdminLogin/AdminLogin";
 import Protected from "../Protected/Protected";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import TravelEntry from "../TravelEntry/TravelEntry";
 
 require("./Reset.css");
 require("./App.css");
@@ -24,12 +25,14 @@ export default class App extends Component {
     super();
     this.state = {
       entries: [],
-      photos: []
+      photos: [],
+      entry: null
     };
     this.addEntry = this.addEntry.bind(this);
     this.removeEntry = this.removeEntry.bind(this);
     this.savePhoto = this.savePhoto.bind(this);
     this.removePhoto = this.removePhoto.bind(this);
+    this.select = this.select.bind(this);
   }
 
   componentDidMount() {
@@ -65,7 +68,7 @@ export default class App extends Component {
         let entries = this.state.entries;
         entries.push(data[0]);
         this.setState({ entries });
-        scroll()
+        scroll();
       })
       .catch(err => alert(err));
   }
@@ -142,6 +145,10 @@ export default class App extends Component {
       .catch(err => alert(err));
   }
 
+  select(entry) {
+    this.setState({ entry })
+  }
+
   render() {
     return (
       <main>
@@ -149,9 +156,13 @@ export default class App extends Component {
         <Route exact path="/" component={Welcome} />
         <Route path="/about" component={About} />
         <Route
-          path="/travel"
+          exact path="/travel"
           render={() =>
-            <Travel entries={this.state.entries} component={Travel} />}
+            <Travel
+              entries={this.state.entries}
+              component={Travel}
+              select={this.select}
+            />}
         />
         <Route path="/write" component={Write} />
         <Route
@@ -159,6 +170,15 @@ export default class App extends Component {
           render={() => <Photo photos={this.state.photos} component={Photo} />}
         />
         <Route exact path="/admin" component={AdminLogin} />
+        <Route
+          path="/travel-entry"
+          render={() =>
+            <TravelEntry
+              entry={this.state.entry}
+              addEntry={this.props.addEntry}
+              removeEntry={this.props.removeEntry}
+            />}
+        />
         <PrivateRoute
           path="/protected"
           entries={this.state.entries}

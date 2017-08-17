@@ -25729,25 +25729,29 @@
 
 	var _Travel2 = _interopRequireDefault(_Travel);
 
-	var _Write = __webpack_require__(240);
+	var _Write = __webpack_require__(241);
 
 	var _Write2 = _interopRequireDefault(_Write);
 
-	var _Photo = __webpack_require__(241);
+	var _Photo = __webpack_require__(242);
 
 	var _Photo2 = _interopRequireDefault(_Photo);
 
-	var _AdminLogin = __webpack_require__(244);
+	var _AdminLogin = __webpack_require__(245);
 
 	var _AdminLogin2 = _interopRequireDefault(_AdminLogin);
 
-	var _Protected = __webpack_require__(248);
+	var _Protected = __webpack_require__(249);
 
 	var _Protected2 = _interopRequireDefault(_Protected);
 
-	var _PrivateRoute = __webpack_require__(257);
+	var _PrivateRoute = __webpack_require__(258);
 
 	var _PrivateRoute2 = _interopRequireDefault(_PrivateRoute);
+
+	var _TravelEntry = __webpack_require__(238);
+
+	var _TravelEntry2 = _interopRequireDefault(_TravelEntry);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25757,8 +25761,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(258);
-	__webpack_require__(260);
+	__webpack_require__(259);
+	__webpack_require__(261);
 
 	var App = function (_Component) {
 	  _inherits(App, _Component);
@@ -25770,12 +25774,14 @@
 
 	    _this.state = {
 	      entries: [],
-	      photos: []
+	      photos: [],
+	      entry: null
 	    };
 	    _this.addEntry = _this.addEntry.bind(_this);
 	    _this.removeEntry = _this.removeEntry.bind(_this);
 	    _this.savePhoto = _this.savePhoto.bind(_this);
 	    _this.removePhoto = _this.removePhoto.bind(_this);
+	    _this.select = _this.select.bind(_this);
 	    return _this;
 	  }
 
@@ -25915,6 +25921,11 @@
 	      });
 	    }
 	  }, {
+	    key: "select",
+	    value: function select(entry) {
+	      this.setState({ entry: entry });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var _this8 = this;
@@ -25926,9 +25937,13 @@
 	        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Welcome2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: "/about", component: _About2.default }),
 	        _react2.default.createElement(_reactRouterDom.Route, {
-	          path: "/travel",
+	          exact: true, path: "/travel",
 	          render: function render() {
-	            return _react2.default.createElement(_Travel2.default, { entries: _this8.state.entries, component: _Travel2.default });
+	            return _react2.default.createElement(_Travel2.default, {
+	              entries: _this8.state.entries,
+	              component: _Travel2.default,
+	              select: _this8.select
+	            });
 	          }
 	        }),
 	        _react2.default.createElement(_reactRouterDom.Route, { path: "/write", component: _Write2.default }),
@@ -25939,6 +25954,16 @@
 	          }
 	        }),
 	        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/admin", component: _AdminLogin2.default }),
+	        _react2.default.createElement(_reactRouterDom.Route, {
+	          path: "/travel-entry",
+	          render: function render() {
+	            return _react2.default.createElement(_TravelEntry2.default, {
+	              entry: _this8.state.entry,
+	              addEntry: _this8.props.addEntry,
+	              removeEntry: _this8.props.removeEntry
+	            });
+	          }
+	        }),
 	        _react2.default.createElement(_PrivateRoute2.default, {
 	          path: "/protected",
 	          entries: this.state.entries,
@@ -26855,6 +26880,10 @@
 
 	var _reactRouterDom = __webpack_require__(185);
 
+	var _TravelEntry = __webpack_require__(238);
+
+	var _TravelEntry2 = _interopRequireDefault(_TravelEntry);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26863,7 +26892,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(238);
+	__webpack_require__(239);
 
 	var Travel = function (_Component) {
 	  _inherits(Travel, _Component);
@@ -26907,8 +26936,10 @@
 	          ),
 	          _react2.default.createElement("br", null),
 	          _react2.default.createElement(
-	            "a",
-	            null,
+	            _reactRouterDom.Link,
+	            { to: "/travel-entry", onClick: function onClick() {
+	                return _this2.props.select(entry);
+	              } },
 	            "read more >"
 	          ),
 	          _this2.props.location.pathname === "/protected/travel" ? _react2.default.createElement(
@@ -26941,10 +26972,102 @@
 /* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouterDom = __webpack_require__(185);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(239);
+
+	var TravelEntry = function (_Component) {
+	  _inherits(TravelEntry, _Component);
+
+	  function TravelEntry() {
+	    _classCallCheck(this, TravelEntry);
+
+	    return _possibleConstructorReturn(this, (TravelEntry.__proto__ || Object.getPrototypeOf(TravelEntry)).apply(this, arguments));
+	  }
+
+	  _createClass(TravelEntry, [{
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+
+	      if (!this.props.entry) {
+	        return _react2.default.createElement(_reactRouterDom.Redirect, { from: "/travel-entry", exact: true, to: "/travel" });
+	      }
+
+	      var entry = this.props.entry;
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "entry", key: entry.id },
+	        _react2.default.createElement("img", { className: "entry-photo", src: entry.photo }),
+	        _react2.default.createElement("div", { id: "pdfRenderer" }),
+	        _react2.default.createElement(
+	          "h1",
+	          { className: "entry-title" },
+	          entry.title
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          { className: "entry-date" },
+	          entry.date
+	        ),
+	        _react2.default.createElement(
+	          "pre",
+	          { className: "entry-content" },
+	          entry.content
+	        ),
+	        this.props.location.pathname === "/protected/travel" ? _react2.default.createElement(
+	          "button",
+	          {
+	            className: "entry-btn",
+	            onClick: function onClick() {
+	              _this2.props.removeEntry(entry.id);
+	            }
+	          },
+	          "remove"
+	        ) : ""
+	      );
+
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        formatted
+	      );
+	    }
+	  }]);
+
+	  return TravelEntry;
+	}(_react.Component);
+
+	exports.default = (0, _reactRouterDom.withRouter)(TravelEntry);
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(239);
+	var content = __webpack_require__(240);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -26969,7 +27092,7 @@
 	}
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);
@@ -26983,7 +27106,7 @@
 
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27034,7 +27157,7 @@
 	exports.default = Write;
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27059,7 +27182,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(242);
+	__webpack_require__(243);
 
 	var Photo = function (_Component) {
 	  _inherits(Photo, _Component);
@@ -27107,13 +27230,13 @@
 	exports.default = (0, _reactRouterDom.withRouter)(Photo);
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(243);
+	var content = __webpack_require__(244);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -27138,7 +27261,7 @@
 	}
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);
@@ -27152,7 +27275,7 @@
 
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27169,7 +27292,7 @@
 
 	var _reactRouterDom = __webpack_require__(185);
 
-	var _Auth = __webpack_require__(245);
+	var _Auth = __webpack_require__(246);
 
 	var _Auth2 = _interopRequireDefault(_Auth);
 
@@ -27181,7 +27304,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(246);
+	__webpack_require__(247);
 
 	var AdminLogin = function (_Component) {
 	  _inherits(AdminLogin, _Component);
@@ -27265,7 +27388,7 @@
 	exports.default = AdminLogin;
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -27302,13 +27425,13 @@
 	exports.default = Auth;
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(247);
+	var content = __webpack_require__(248);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -27333,7 +27456,7 @@
 	}
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);
@@ -27347,7 +27470,7 @@
 
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27364,15 +27487,15 @@
 
 	var _reactRouterDom = __webpack_require__(185);
 
-	var _PhotoUpload = __webpack_require__(249);
+	var _PhotoUpload = __webpack_require__(250);
 
 	var _PhotoUpload2 = _interopRequireDefault(_PhotoUpload);
 
-	var _TravelEdit = __webpack_require__(253);
+	var _TravelEdit = __webpack_require__(254);
 
 	var _TravelEdit2 = _interopRequireDefault(_TravelEdit);
 
-	var _PhotoEdit = __webpack_require__(254);
+	var _PhotoEdit = __webpack_require__(255);
 
 	var _PhotoEdit2 = _interopRequireDefault(_PhotoEdit);
 
@@ -27384,7 +27507,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(255);
+	__webpack_require__(256);
 
 	var Protected = function (_Component) {
 	  _inherits(Protected, _Component);
@@ -27473,7 +27596,7 @@
 	exports.default = Protected;
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27488,7 +27611,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Loading = __webpack_require__(250);
+	var _Loading = __webpack_require__(251);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -27569,7 +27692,7 @@
 	exports.default = PhotoUpload;
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27584,7 +27707,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(251);
+	__webpack_require__(252);
 
 	var Loading = function Loading() {
 	  return _react2.default.createElement(
@@ -27597,13 +27720,13 @@
 	exports.default = Loading;
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(252);
+	var content = __webpack_require__(253);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -27628,7 +27751,7 @@
 	}
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);
@@ -27642,7 +27765,7 @@
 
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27659,7 +27782,7 @@
 
 	var _reactRouterDom = __webpack_require__(185);
 
-	var _PhotoUpload = __webpack_require__(249);
+	var _PhotoUpload = __webpack_require__(250);
 
 	var _PhotoUpload2 = _interopRequireDefault(_PhotoUpload);
 
@@ -27804,7 +27927,7 @@
 	exports.default = TravelEdit;
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27821,11 +27944,11 @@
 
 	var _reactRouterDom = __webpack_require__(185);
 
-	var _PhotoUpload = __webpack_require__(249);
+	var _PhotoUpload = __webpack_require__(250);
 
 	var _PhotoUpload2 = _interopRequireDefault(_PhotoUpload);
 
-	var _Photo = __webpack_require__(241);
+	var _Photo = __webpack_require__(242);
 
 	var _Photo2 = _interopRequireDefault(_Photo);
 
@@ -27892,13 +28015,13 @@
 	exports.default = TravelEdit;
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(256);
+	var content = __webpack_require__(257);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -27923,7 +28046,7 @@
 	}
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);
@@ -27937,7 +28060,7 @@
 
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27954,7 +28077,7 @@
 
 	var _reactRouterDom = __webpack_require__(185);
 
-	var _Auth = __webpack_require__(245);
+	var _Auth = __webpack_require__(246);
 
 	var _Auth2 = _interopRequireDefault(_Auth);
 
@@ -27988,13 +28111,13 @@
 	exports.default = PrivateRoute;
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(259);
+	var content = __webpack_require__(260);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -28019,7 +28142,7 @@
 	}
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);
@@ -28033,13 +28156,13 @@
 
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(261);
+	var content = __webpack_require__(262);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -28064,7 +28187,7 @@
 	}
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(229)(undefined);

@@ -3,23 +3,21 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  withRouter
+  withRouter,
+  Redirect
 } from "react-router-dom";
-import TravelEntry from "../TravelEntry/TravelEntry";
 
-require("./Travel.css");
+require("../Travel/Travel.css");
 
-class Travel extends Component {
+class TravelEntry extends Component {
   render() {
-    let entries = this.props ? this.props.entries : [];
-    let formatted = entries.map(entry => {
+    if(!this.props.entry) {
+      return (
+        <Redirect from="/travel-entry" exact to="/travel" />
+      )
+    }
 
-      let formattedContent = entry.content.substr(0, 400);
-      formattedContent = entry.content.substr(
-        0,
-        Math.min(formattedContent.length, formattedContent.lastIndexOf(" "))
-      ) + "...";
-
+    let entry = this.props.entry
       return (
         <div className="entry" key={entry.id}>
           <img className="entry-photo" src={entry.photo} />
@@ -31,10 +29,8 @@ class Travel extends Component {
             {entry.date}
           </p>
           <pre className="entry-content">
-            {formattedContent}
+            {entry.content}
           </pre>
-          <br />
-          <Link to="/travel-entry" onClick={() => this.props.select(entry)} >read more ></Link>
           {this.props.location.pathname === "/protected/travel"
             ? <button
                 className="entry-btn"
@@ -47,7 +43,6 @@ class Travel extends Component {
             : ""}
         </div>
       );
-    });
 
     return (
       <div>
@@ -57,4 +52,4 @@ class Travel extends Component {
   }
 }
 
-export default withRouter(Travel);
+export default withRouter(TravelEntry);
