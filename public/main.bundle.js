@@ -25807,10 +25807,9 @@
 	    }
 	  }, {
 	    key: "addEntry",
-	    value: function addEntry(photo, title, date, content) {
+	    value: function addEntry(photo, title, date, content, scroll) {
 	      var _this3 = this;
 
-	      console.log(content);
 	      var url = "https://secleere.herokuapp.com/api/v1/blog";
 	      fetch(url, {
 	        method: "POST",
@@ -25822,6 +25821,7 @@
 	        var entries = _this3.state.entries;
 	        entries.push(data[0]);
 	        _this3.setState({ entries: entries });
+	        scroll();
 	      }).catch(function (err) {
 	        return alert(err);
 	      });
@@ -26881,7 +26881,6 @@
 
 	      var entries = this.props ? this.props.entries : [];
 	      var formatted = entries.map(function (entry) {
-	        console.log(entry.content);
 	        return _react2.default.createElement(
 	          "div",
 	          { className: "entry", key: entry.id },
@@ -27701,6 +27700,11 @@
 	      return "";
 	    }
 	  }, {
+	    key: "scroll",
+	    value: function scroll() {
+	      $("html,body").animate({ scrollTop: $(".entry").last().offset().top }, 1000);
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var _this2 = this;
@@ -27768,7 +27772,7 @@
 	            "button",
 	            {
 	              onClick: function onClick() {
-	                return _this2.props.addEntry(blogPhoto, title, _this2.formatDate(), content);
+	                _this2.props.addEntry(blogPhoto, title, _this2.formatDate(), content, _this2.scroll);
 	              }
 	            },
 	            "create"

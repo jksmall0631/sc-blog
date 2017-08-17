@@ -50,6 +50,10 @@ export default class TravelEdit extends Component {
     return "";
   }
 
+  scroll() {
+    $("html,body").animate({ scrollTop: $(".entry").last().offset().top }, 1000);
+  }
+
   render() {
     const { blogPhoto, title, date, content } = this.state;
     return (
@@ -77,8 +81,15 @@ export default class TravelEdit extends Component {
             onChange={e => this.setState({ content: e.target.value })}
           />
           <button
-            onClick={() =>
-              this.props.addEntry(blogPhoto, title, this.formatDate(), content)}
+            onClick={() => {
+              this.props.addEntry(
+                blogPhoto,
+                title,
+                this.formatDate(),
+                content,
+                this.scroll
+              );
+            }}
           >
             create
           </button>

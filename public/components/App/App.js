@@ -53,7 +53,7 @@ export default class App extends Component {
       .catch(err => alert(err));
   }
 
-  addEntry(photo, title, date, content) {
+  addEntry(photo, title, date, content, scroll) {
     const url = "https://secleere.herokuapp.com/api/v1/blog";
     fetch(url, {
       method: "POST",
@@ -65,6 +65,7 @@ export default class App extends Component {
         let entries = this.state.entries;
         entries.push(data[0]);
         this.setState({ entries });
+        scroll()
       })
       .catch(err => alert(err));
   }
