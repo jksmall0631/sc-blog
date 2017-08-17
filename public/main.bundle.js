@@ -26910,7 +26910,6 @@
 
 	      var entries = this.props ? this.props.entries : [];
 	      var formatted = entries.map(function (entry) {
-
 	        var formattedContent = entry.content.substr(0, 400);
 	        formattedContent = entry.content.substr(0, Math.min(formattedContent.length, formattedContent.lastIndexOf(" "))) + "...";
 
@@ -26937,9 +26936,13 @@
 	          _react2.default.createElement("br", null),
 	          _react2.default.createElement(
 	            _reactRouterDom.Link,
-	            { to: "/travel-entry", onClick: function onClick() {
+	            {
+	              to: "/travel-entry",
+	              onClick: function onClick() {
 	                return _this2.props.select(entry);
-	              } },
+	              },
+	              className: "read-more"
+	            },
 	            "read more >"
 	          ),
 	          _this2.props.location.pathname === "/protected/travel" ? _react2.default.createElement(
@@ -27100,7 +27103,7 @@
 
 
 	// module
-	exports.push([module.id, ".entry {\n  max-width: 800px;\n  margin: 50px auto 125px;\n}\n\n.entry-photo {\n  max-width: 800px;\n}\n\n.entry-title {\n  font-weight: 300;\n  font-size: 38px;\n  color: lightgrey;\n  margin: 10px 0;\n}\n\n.entry-date {\n  font-weight: 100;\n  font-size: 15px;\n  text-indent: 5px;\n  color: grey;\n}\n\n.entry-content {\n  line-height: 30px;\n  font-size: 18px;\n  font-weight: 300;\n  margin-top: 20px;\n  color: lightgrey;\n}\n\npre {\n    white-space: pre-wrap;\n    white-space: -moz-pre-wrap;\n    white-space: -pre-wrap;\n    white-space: -o-pre-wrap;\n    word-wrap: break-word;\n}\n\n.entry-btn {\n  float: right;\n}\n\n@media (max-width: 800px) {\n  .entry, .entry-photo {\n    max-width: 500px;\n  }\n}\n\n@media (max-width: 500px) {\n  .entry {\n    margin: 50px auto 75px;\n  }\n\n  .entry, .entry-photo {\n    max-width: 100%\n  }\n}\n", ""]);
+	exports.push([module.id, ".entry {\n  max-width: 800px;\n  margin: 50px auto 125px;\n}\n\n.entry-photo {\n  max-width: 800px;\n}\n\n.entry-title {\n  font-weight: 300;\n  font-size: 38px;\n  color: lightgrey;\n  margin: 10px 0;\n}\n\n.entry-date {\n  font-weight: 100;\n  font-size: 15px;\n  text-indent: 5px;\n  color: grey;\n}\n\n.entry-content {\n  line-height: 30px;\n  font-size: 18px;\n  font-weight: 300;\n  margin-top: 20px;\n  color: lightgrey;\n}\n\n.read-more {\n  color: #EB6649;\n  text-decoration: none;\n  font-weight: 300;\n}\n\npre {\n    white-space: pre-wrap;\n    white-space: -moz-pre-wrap;\n    white-space: -pre-wrap;\n    white-space: -o-pre-wrap;\n    word-wrap: break-word;\n}\n\n.entry-btn {\n  float: right;\n}\n\n@media (max-width: 800px) {\n  .entry, .entry-photo {\n    max-width: 500px;\n  }\n}\n\n@media (max-width: 500px) {\n  .entry {\n    margin: 50px auto 75px;\n  }\n\n  .entry, .entry-photo {\n    max-width: 100%\n  }\n}\n", ""]);
 
 	// exports
 

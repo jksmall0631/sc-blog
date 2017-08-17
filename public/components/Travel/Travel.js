@@ -13,12 +13,12 @@ class Travel extends Component {
   render() {
     let entries = this.props ? this.props.entries : [];
     let formatted = entries.map(entry => {
-
       let formattedContent = entry.content.substr(0, 400);
-      formattedContent = entry.content.substr(
-        0,
-        Math.min(formattedContent.length, formattedContent.lastIndexOf(" "))
-      ) + "...";
+      formattedContent =
+        entry.content.substr(
+          0,
+          Math.min(formattedContent.length, formattedContent.lastIndexOf(" "))
+        ) + "...";
 
       return (
         <div className="entry" key={entry.id}>
@@ -34,7 +34,13 @@ class Travel extends Component {
             {formattedContent}
           </pre>
           <br />
-          <Link to="/travel-entry" onClick={() => this.props.select(entry)} >read more ></Link>
+          <Link
+            to="/travel-entry"
+            onClick={() => this.props.select(entry)}
+            className="read-more"
+          >
+            read more >
+          </Link>
           {this.props.location.pathname === "/protected/travel"
             ? <button
                 className="entry-btn"

@@ -29,6 +29,12 @@
   color: lightgrey;
 }
 
+.read-more {
+  color: #EB6649;
+  text-decoration: none;
+  font-weight: 300;
+}
+
 pre {
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
