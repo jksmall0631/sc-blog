@@ -57,6 +57,7 @@ class Travel extends Component {
 
     return (
       <div>
+        <h1 className="title">Travel</h1>
         {formatted}
       </div>
     );

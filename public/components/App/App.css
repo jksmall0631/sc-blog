@@ -3,3 +3,10 @@ body {
   font-family: 'Lato', sans-serif;
   color: white;
 }
+
+.title {
+  color: lightgrey;
+  font-size: 50px;
+  font-weight: 300;
+  text-align: center;
+}

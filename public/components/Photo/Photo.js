@@ -30,6 +30,7 @@ class Photo extends Component {
     });
     return (
       <div>
+        <h1 className="title">Photograph</h1>
         {formatted}
       </div>
     );
