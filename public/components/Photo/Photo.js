@@ -5,24 +5,29 @@ import {
   Link,
   withRouter
 } from "react-router-dom";
+import Masonry from "react-masonry-component";
 
 require("./Photo.css");
 
-class Photo extends Component {
+const masonryOptions = {
+  gutter: 20,
+  fitWidth: true,
+};
 
+class Photo extends Component {
   shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
     }
     return array;
   }
 
   render() {
     let photos = this.props ? this.props.photos : [];
-    const shuffled = this.shuffleArray(photos)
+    const shuffled = this.shuffleArray(photos);
     let formatted = shuffled.map(photo => {
       return (
         <div className="photo-cont" key={photo.id}>
@@ -43,7 +48,15 @@ class Photo extends Component {
     return (
       <div>
         <h1 className="title">Photograph</h1>
-        {formatted}
+        <Masonry
+          className={"my-gallery-class"}
+          elementType={"ul"}
+          options={masonryOptions}
+          disableImagesLoaded={false}
+          updateOnEachImageLoad={false}
+        >
+          {formatted}
+        </Masonry>
       </div>
     );
   }

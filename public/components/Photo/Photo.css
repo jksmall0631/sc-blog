@@ -1,32 +1,16 @@
-.photo-cont {
-  max-width: 800px;
-  margin: 50px auto 125px;
+.my-gallery-class {
+  margin: 20px auto;
+}
+
+.photo-cont, .photo {
+  width: 400px;
 }
 
 .photo {
-  max-width: 800px;
+  position: static;
+  margin-top: 20px;
 }
 
 .photo-del {
   float: right;
-}
-
-@media (max-width: 800px) {
-  .photo-cont {
-    margin: 50px auto;
-  }
-
-  .photo, .photo-cont {
-    max-width: 500px;
-  }
-}
-
-@media (max-width: 500px) {
-  .photo-cont {
-    margin: 50px auto;
-  }
-
-  .photo, .photo-cont {
-    max-width: 100%
-  }
 }
