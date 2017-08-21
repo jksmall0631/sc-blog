@@ -27258,12 +27258,24 @@
 	  }
 
 	  _createClass(Photo, [{
+	    key: "shuffleArray",
+	    value: function shuffleArray(array) {
+	      for (var i = array.length - 1; i > 0; i--) {
+	        var j = Math.floor(Math.random() * (i + 1));
+	        var temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	      }
+	      return array;
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var _this2 = this;
 
 	      var photos = this.props ? this.props.photos : [];
-	      var formatted = photos.map(function (photo) {
+	      var shuffled = this.shuffleArray(photos);
+	      var formatted = shuffled.map(function (photo) {
 	        return _react2.default.createElement(
 	          "div",
 	          { className: "photo-cont", key: photo.id },
